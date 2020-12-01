@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace OfficalNoteTaker
 {
@@ -19,6 +20,7 @@ namespace OfficalNoteTaker
             InitializeComponent();
         }
 
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-RKQ0H6O\SQLEXPRESS;Initial Catalog=Notes1_1;Integrated Security=True");
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -42,28 +44,41 @@ namespace OfficalNoteTaker
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            Reset2_but.Visible = false;
             reset_lbl.Visible = false;
         }
 
         private void Reset_but_Click(object sender, EventArgs e)
         {
-            if (password.Equals(txt_Password.Text) == true && Username.Equals(txt_User.Text) == true)
+            SqlDataAdapter sda = new SqlDataAdapter("Select count(*) From Security2 Where Username= '" +txt_User.Text + "' and Password = '"+ txt_Password.Text + "'", con);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows[0][0].ToString() == "1")
             {
-                reset_lbl.Visible = true;
+                con.Open();
+                string query = "DELETE FROM Security2 WHERE Username = '" + txt_User.Text + "'";
+                SqlDataAdapter SDA = new SqlDataAdapter(query, con);
+                SDA.SelectCommand.ExecuteNonQuery();
+                con.Close();
 
+                Reset2_but.Visible = true;
+                reset_lbl.Visible = true;
+            }
+
+            else
+            {
                 txt_User.Clear();
                 txt_Password.Clear();
-                Set_but.Visible = true;
-
             }
         }
 
         private void Set_but_Click(object sender, EventArgs e)
         {
-            password = txt_Password.Text;
-            Username = txt_User.Text;
-
+            con.Open();
+            string query = "INSERT INTO Security2 (Username, Password) VALUES ('" + txt_User.Text + "','" + txt_Password.Text + "')";
+            SqlDataAdapter SDA = new SqlDataAdapter(query, con);
+            SDA.SelectCommand.ExecuteNonQuery();
+            con.Close();
             txt_User.Clear();
             txt_Password.Clear();
 
@@ -73,7 +88,10 @@ namespace OfficalNoteTaker
 
         private void Login_but_Click(object sender, EventArgs e)
         {
-            if (password.Equals(txt_Password.Text) == true && Username.Equals(txt_User.Text) == true)
+            SqlDataAdapter sda = new SqlDataAdapter("Select count(*) From Security2 Where Username= '" + txt_User.Text + "' and Password = '" + txt_Password.Text + "'", con);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows[0][0].ToString() == "1")
             {
                 new Form1().Show();
                 this.Hide();
@@ -84,6 +102,20 @@ namespace OfficalNoteTaker
                 txt_User.Clear();
                 txt_Password.Clear();
             }
+        }
+
+        private void Reset2_but_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            string query = "INSERT INTO Security2 (Username, Password) VALUES ('" + txt_User.Text + "','" + txt_Password.Text + "')";
+            SqlDataAdapter SDA = new SqlDataAdapter(query, con);
+            SDA.SelectCommand.ExecuteNonQuery();
+            con.Close();
+            txt_User.Clear();
+            txt_Password.Clear();
+
+            Reset2_but.Visible = false;
+            reset_lbl.Visible = false;
         }
     }
 }

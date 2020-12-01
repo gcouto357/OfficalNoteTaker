@@ -41,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.reset_label = new System.Windows.Forms.Label();
             this.reset_lbl = new System.Windows.Forms.Label();
+            this.Reset2_but = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Login_but
@@ -133,7 +134,7 @@
             this.Set_but.Name = "Set_but";
             this.Set_but.Size = new System.Drawing.Size(75, 23);
             this.Set_but.TabIndex = 9;
-            this.Set_but.Text = "Set";
+            this.Set_but.Text = "Sign up";
             this.Set_but.UseVisualStyleBackColor = true;
             this.Set_but.Click += new System.EventHandler(this.Set_but_Click);
             // 
@@ -163,11 +164,22 @@
             this.reset_lbl.TabIndex = 11;
             this.reset_lbl.Text = "Now enter your desired username and password and press Set";
             // 
+            // Reset2_but
+            // 
+            this.Reset2_but.Location = new System.Drawing.Point(355, 357);
+            this.Reset2_but.Name = "Reset2_but";
+            this.Reset2_but.Size = new System.Drawing.Size(75, 23);
+            this.Reset2_but.TabIndex = 12;
+            this.Reset2_but.Text = "Reset";
+            this.Reset2_but.UseVisualStyleBackColor = true;
+            this.Reset2_but.Click += new System.EventHandler(this.Reset2_but_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Reset2_but);
             this.Controls.Add(this.reset_lbl);
             this.Controls.Add(this.reset_label);
             this.Controls.Add(this.label4);
@@ -204,5 +216,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label reset_label;
         private System.Windows.Forms.Label reset_lbl;
+        private System.Windows.Forms.Button Reset2_but;
     }
 }

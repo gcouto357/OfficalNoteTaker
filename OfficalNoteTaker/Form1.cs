@@ -36,7 +36,7 @@ namespace OfficalNoteTaker
         {
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select * from Notes_Data", con);
+            adapt = new SqlDataAdapter("select * from Notes_Data_Cat", con);
             adapt.Fill(dt);
             dataGridView1.DataSource = dt;
             con.Close();
@@ -50,7 +50,7 @@ namespace OfficalNoteTaker
             }
 
             con.Open();
-            string query = "DELETE FROM Notes_Data WHERE Title = '" + this.txt_title.Text + "'";
+            string query = "DELETE FROM Notes_Data_Cat WHERE Title = '" + this.txt_title.Text + "'";
             SqlDataAdapter SDA = new SqlDataAdapter(query, con);
             SDA.SelectCommand.ExecuteNonQuery();
             con.Close();
@@ -60,22 +60,24 @@ namespace OfficalNoteTaker
         {
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select * from Notes_Data", con);
+            adapt = new SqlDataAdapter("select * from Notes_Data_Cat", con);
             adapt.Fill(dt);
             dataGridView1.DataSource = dt;
             con.Close();
             txt_title.Clear();
+            txt_cata.Clear();
             txt_msg.Clear();
         }
 
         private void Save_but_Click(object sender, EventArgs e)
         {
             con.Open();
-            string query = "INSERT INTO Notes_Data (Title, Message) VALUES ('" + txt_title.Text + "','" + txt_msg.Text + "')";
+            string query = "INSERT INTO Notes_Data_Cat (Title,Catagory, Message) VALUES ('" + txt_title.Text + "','" + txt_cata.Text + "','" + txt_msg.Text + "')";
             SqlDataAdapter SDA = new SqlDataAdapter(query, con);
             SDA.SelectCommand.ExecuteNonQuery();
             con.Close();
             txt_title.Clear();
+            txt_cata.Clear();
             txt_msg.Clear();
         }
 
@@ -83,10 +85,21 @@ namespace OfficalNoteTaker
         {
             string id = txt_Id.Text;
             con.Open();
-            string query = "DELETE FROM Notes_Data WHERE Title = '" + this.txt_Id.Text + "'";
+            string query = "DELETE FROM Notes_Data_Cat WHERE Title = '" + this.txt_Id.Text + "'";
             SqlDataAdapter SDA = new SqlDataAdapter(query, con);
             SDA.SelectCommand.ExecuteNonQuery();
             con.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Form2().Show();
+            this.Hide();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
