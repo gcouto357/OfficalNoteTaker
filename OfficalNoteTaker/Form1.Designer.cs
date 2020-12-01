@@ -40,6 +40,9 @@
             this.Del_but = new System.Windows.Forms.Button();
             this.txt_Id = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.Logout = new System.Windows.Forms.Button();
+            this.txt = new System.Windows.Forms.Label();
+            this.txt_cata = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,11 +159,41 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Enter Id";
             // 
+            // Logout
+            // 
+            this.Logout.Location = new System.Drawing.Point(655, 15);
+            this.Logout.Name = "Logout";
+            this.Logout.Size = new System.Drawing.Size(75, 23);
+            this.Logout.TabIndex = 12;
+            this.Logout.Text = "Logout";
+            this.Logout.UseVisualStyleBackColor = true;
+            this.Logout.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txt
+            // 
+            this.txt.AutoSize = true;
+            this.txt.Location = new System.Drawing.Point(45, 76);
+            this.txt.Name = "txt";
+            this.txt.Size = new System.Drawing.Size(49, 13);
+            this.txt.TabIndex = 13;
+            this.txt.Text = "Catagory";
+            // 
+            // txt_cata
+            // 
+            this.txt_cata.Location = new System.Drawing.Point(92, 77);
+            this.txt_cata.Name = "txt_cata";
+            this.txt_cata.Size = new System.Drawing.Size(229, 20);
+            this.txt_cata.TabIndex = 14;
+            this.txt_cata.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txt_cata);
+            this.Controls.Add(this.txt);
+            this.Controls.Add(this.Logout);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_Id);
             this.Controls.Add(this.Del_but);
@@ -196,6 +229,9 @@
         private System.Windows.Forms.Button Del_but;
         private System.Windows.Forms.TextBox txt_Id;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button Logout;
+        private System.Windows.Forms.Label txt;
+        private System.Windows.Forms.TextBox txt_cata;
     }
 }
 
